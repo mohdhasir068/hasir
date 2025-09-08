@@ -1,1 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Happy Birthday Wifey</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Gallery images */
+        .gallery img {
+            width: 100%;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+        /* Videos */
+        video {
+            width: 100%;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        /* Fade-in animation */
+        .fade-in {
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px);}
+            to { opacity: 1; transform: translateY(0);}
+        }
+
+        /* Confetti canvas */
+        #confetti {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        /* Balloon animation */
+        .balloon {
+            position: absolute;
+            bottom: -150px;
+            width: 60px; height: 80px;
+            border-radius: 50%;
+            animation: floatUp linear infinite;
+            opacity: 0.9;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg);}
+            50% { transform: translateY(-50vh) rotate(10deg);}
+            100% { transform: translateY(-100vh) rotate(-10deg);}
+        }
+
+        /* Sparkle effect on cake and photos */
+        .sparkle {
+            position: relative;
+            display: inline-block;
+        }
+        .sparkle::after {
+            content: "✨";
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            font-size: 1.5rem;
+            animation: twinkle 1.5s infinite alternate;
+        }
+        @keyframes twinkle {
+            0% {opacity: 0;}
+            50% {opacity: 1; transform: scale(1.2);}
+            100% {opacity: 0;}
+        }
+
+        /* Cake z-index fix */
+        .cake {
+            z-index: 2;
+            position: relative;
+        }
+
+        /* Modal styles */
+        .media-modal {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+        .media-modal img, .media-modal video {
+            max-width: 95%;
+            max-height: 95%;
+            border-radius: 15px;
+        }
+        .media-modal .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 35px;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Romantic message style */
+        .romantic-message {
+            text-align: center;
+            font-size: 1.5rem;
+            color: #ff3366;
+            margin: 40px 20px;
+            font-family: 'Cursive', sans-serif;
+            animation: fadeIn 2s ease-in-out;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="loader">
+                <button id="play">Start</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 🎵 Background Music -->
+    <audio class="song" id="bg-music" controls loop>
+        <source src="music.mp3">
+        Your browser isn't invited for super fun audio time.
+    </audio>
+
+    <canvas id="confetti"></canvas>
+
+    <div class="main">
+        <div class="container pt-5">
+            <div class="row">
+                <div class="col-12 col-xl-6 mx-auto">
+                    <img src="img/banner.png" alt="" class="fade-in">
+                </div>
+
+                <div class="col-12 text-center">
+                    <div id="name" class="area fade-in">Wifey</div>
+                </div>
+
+                <div class="col-12 text-center">
+                    <div class="type-wrap fade-in">
+                        <div id="typed-strings" class="typing">
+                            <h2>Happy Birthday <i id="nae">Wifey</i></h2>
+                            <h2>Have a wonderful day</h2>
+                            <h2>Filled with joy and happiness.</h2>
+                        </div>
+                        <span id="typed" style="white-space:pre;"></span>
+                    </div>
+                </div>
+
+                <div class="col-12 col-xl-3 cake sparkle fade-in">
+                    <img src="img/cake.gif" alt="">
+                </div>
+            </div>
+        </div>
+
+        <!-- 📸 Photo Gallery -->
+        <div class="container pt-5">
+            <h3 class="text-center fade-in">Memories with Wifey 💕</h3>
+            <div class="row gallery">
+                <!-- 10 Photos -->
+                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photo1.jpg"></div>
+                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photo2.jpg"></div>
+                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photo3.jpg"></div>
+                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photo4.jpg"></div>
+                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photo5.jpg"></div>
+                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photo6.jpg"></div>
+                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photo7.jpg"></div>
+                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photo8.jpg"></div>
+                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photo9.jpg"></div>
+                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photo10.jpg"></div>
+            </div>
+        </div>
+
+        <!-- 🎥 Videos Directly -->
+        <div class="container pt-5">
+            <h3 class="text-center fade-in">Special Moments 🎥</h3>
+            <div class="row">
+                <div class="col-12 col-md-6 fade-in">
+                    <video controls playsinline>
+                        <source src="video/video1.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                    </video>
+                </div>
+                <div class="col-12 col-md-6 fade-in">
+                    <video controls playsinline>
+                        <source src="video/video2.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                    </video>
+                </div>
+                <div class="col-12 col-md-6 fade-in">
+                    <video controls playsinline>
+                        <source src="video/video3.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                    </video>
+                </div>
+                <div class="col-12 col-md-6 fade-in">
+                    <video controls playsinline>
+                        <source src="video/video4.mp4" type="video/mp4">
+                        Your browser does not support HTML5 video.
+                    </video>
+                </div>
+            </div>
+        </div>
+
+        <!-- Romantic Message -->
+        <div class="romantic-message fade-in">
+            “You are my sunshine, my love, my everything. Happy Birthday, my dearest Wifey 💖”
+        </div>
+
+        <img src="img/Balloon-Border.png" width="100%" class="balloon-border">
+    </div>
+
+    <!-- Fullscreen modal for images and videos -->
+    <div class="media-modal" id="mediaModal">
+        <span class="close-modal" onclick="closeModal()">&times;</span>
+        <img id="modalImg" style="display:none;">
+        <video id="modalVideo" controls playsinline style="display:none;"></video>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/magic-snowflakes/dist/snowflakes.min.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/typed.min.js"></script>
+    <script src="js/script.js"></script>
+
+    <script>
+        // Confetti effect
+        const confettiCanvas = document.getElementById('confetti');
+        const ctx = confettiCanvas.getContext('2d');
+        confettiCanvas.width = window.innerWidth;
+        confettiCanvas.height = window.innerHeight;
+        const confettis = [];
+        for(let i=0;i<150;i++){
+            confettis.push({
+                x: Math.random()*confettiCanvas.width,
+                y: Math.random()*confettiCanvas.height,
+                r: Math.random()*6+4,
+                d: Math.random()*150+50,
+                color: `hsl(${Math.random()*360},70%,60%)`,
+                tilt: Math.random()*10-10
+            });
+        }
+        function drawConfetti(){
+            ctx.clearRect(0,0,confettiCanvas.width, confettiCanvas.height);
+            confettis.forEach((c)=>{
+                ctx.beginPath();
+                ctx.lineWidth = c.r/2;
+                ctx.strokeStyle = c.color;
+                ctx.moveTo(c.x+c.tilt, c.y);
+                ctx.lineTo(c.x+c.tilt, c.y+c.r);
+                ctx.stroke();
+                c.y += 2;
+                if(c.y > confettiCanvas.height) c.y = -10;
+            });
+            requestAnimationFrame(drawConfetti);
+        }
+        drawConfetti();
+
+        // Balloons
+        const balloonsContainer = document.createElement('div');
+        balloonsContainer.id = "balloons";
+        document.body.appendChild(balloonsContainer);
+        const colors = ["#ff4d6d","#ff99cc","#ffccff","#66ccff","#ffcc66"];
+        for(let i=0;i<15;i++){
+            const balloon = document.createElement("div");
+            balloon.classList.add("balloon");
+            balloon.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
+            balloon.style.left = Math.random()*90+"%";
+            balloon.style.animationDuration = (6+Math.random()*6)+"s";
+            balloonsContainer.appendChild(balloon);
+        }
+
+        // Fade-in for images and videos
+        document.querySelectorAll('img, video').forEach(el => {
+            el.classList.add('fade-in');
+        });
+
+        // Sparkle effect for cake and photos
+        document.querySelectorAll('.cake img, .gallery img').forEach(el => {
+            el.classList.add('sparkle');
+        });
+
+        // Interactive background music and stop previous video
+        const bgMusic = document.getElementById("bg-music");
+        let playingVideo = null;
+
+        document.querySelectorAll('video').forEach(video => {
+            video.addEventListener('play', () => {
+                if(playingVideo && playingVideo !== video){
+                    playingVideo.pause();
+                }
+                playingVideo = video;
+                bgMusic.pause();
+            });
+            video.addEventListener('pause', () => {
+                if(video === playingVideo) {
+                    playingVideo = null;
+                    bgMusic.play();
+                }
+            });
+            video.addEventListener('ended', () => {
+                if(video === playingVideo) {
+                    playingVideo = null;
+                    bgMusic.play();
+                }
+            });
+        });
+
+        // Fullscreen modal for image/video
+        const mediaModal = document.getElementById('mediaModal');
+        const modalImg = document.getElementById('modalImg');
+        const modalVideo = document.getElementById('modalVideo');
+
+        document.querySelectorAll('.gallery img').forEach(img => {
+            img.addEventListener('click', () => {
+                modalImg.src = img.src;
+                modalImg.style.display = "block";
+                modalVideo.style.display = "none";
+                mediaModal.style.display = "flex";
+            });
+        });
+
+        document.querySelectorAll('video').forEach(video => {
+            video.addEventListener('click', () => {
+                modalVideo.src = video.querySelector('source').src;
+                modalVideo.style.display = "block";
+                modalImg.style.display = "none";
+                mediaModal.style.display = "flex";
+                modalVideo.play();
+            });
+        });
+
+        function closeModal() {
+            mediaModal.style.display = "none";
+            modalVideo.pause();
+            modalVideo.src = "";
+        }
+    </script>
+</body>
+</html>
 
