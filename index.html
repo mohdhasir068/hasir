@@ -54,6 +54,7 @@
             width: 100%;
             border-radius: 15px;
             margin-bottom: 20px;
+            cursor: pointer;
         }
 
         /* Fade-in animation */
@@ -123,20 +124,13 @@
             display: none;
             align-items: center;
             justify-content: center;
-            z-index: 9999;
+            z-index: 20000;
+            cursor: pointer;
         }
         .media-modal img, .media-modal video {
             max-width: 95%;
             max-height: 95%;
             border-radius: 15px;
-        }
-        .media-modal .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            font-size: 35px;
-            color: white;
-            cursor: pointer;
         }
 
         /* Romantic message style */
@@ -157,7 +151,7 @@
         <button onclick="scrollToSection('hbdSection')">Home</button>
         <button onclick="scrollToSection('photoSection')">Photos</button>
         <button onclick="scrollToSection('videoSection')">Videos</button>
-        <button onclick="scrollToSection('romanticMessage')">Love Letter</button>
+        <button onclick="scrollToSection('romanticMessage')">Letter</button>
     </div>
 
     <div class="container">
@@ -183,11 +177,9 @@
                 <div class="col-12 col-xl-6 mx-auto">
                     <img src="img/banner.png" alt="" class="fade-in">
                 </div>
-
                 <div class="col-12 text-center">
                     <div id="name" class="area fade-in">Wifey</div>
                 </div>
-
                 <div class="col-12 text-center">
                     <div class="type-wrap fade-in">
                         <div id="typed-strings" class="typing">
@@ -198,7 +190,6 @@
                         <span id="typed" style="white-space:pre;"></span>
                     </div>
                 </div>
-
                 <div class="col-12 col-xl-3 cake sparkle fade-in">
                     <img src="img/cake.gif" alt="">
                 </div>
@@ -209,17 +200,16 @@
         <div id="photoSection" class="container pt-5">
             <h3 class="text-center fade-in">ðŸ’• Gallery of My Love ðŸ’•</h3>
             <div class="row gallery">
-                <!-- 10 Photos -->
-                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photo1.jpg"></div>
-                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photo2.jpg"></div>
-                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photo3.jpg"></div>
-                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photo4.jpg"></div>
-                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photo5.jpg"></div>
-                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photo6.jpg"></div>
-                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photo7.jpg"></div>
-                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photo8.jpg"></div>
-                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photo9.jpg"></div>
-                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photo10.jpg"></div>
+                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photos1.jpg"></div>
+                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photos2.jpg"></div>
+                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photos3.jpg"></div>
+                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photos4.jpg"></div>
+                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photos5.jpg"></div>
+                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photos6.jpg"></div>
+                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photos7.jpg"></div>
+                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photos8.jpg"></div>
+                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photos9.jpg"></div>
+                <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photos10.jpg"></div>
             </div>
         </div>
 
@@ -230,25 +220,21 @@
                 <div class="col-12 col-md-6 fade-in">
                     <video controls playsinline>
                         <source src="video/video1.mp4" type="video/mp4">
-                        Your browser does not support HTML5 video.
                     </video>
                 </div>
                 <div class="col-12 col-md-6 fade-in">
                     <video controls playsinline>
                         <source src="video/video2.mp4" type="video/mp4">
-                        Your browser does not support HTML5 video.
                     </video>
                 </div>
                 <div class="col-12 col-md-6 fade-in">
                     <video controls playsinline>
                         <source src="video/video3.mp4" type="video/mp4">
-                        Your browser does not support HTML5 video.
                     </video>
                 </div>
                 <div class="col-12 col-md-6 fade-in">
                     <video controls playsinline>
                         <source src="video/video4.mp4" type="video/mp4">
-                        Your browser does not support HTML5 video.
                     </video>
                 </div>
             </div>
@@ -256,8 +242,8 @@
 
         <!-- Romantic Message Section -->
         <div id="romanticMessage" class="container pt-5">
-    <h3 class="text-center fade-in">ðŸ’– My Heart ðŸ’–</h3>
-    <div class="romantic-message fade-in">
+            <h3 class="text-center fade-in">ðŸ’– A Letter from My Heart ðŸ’–</h3>
+            <div class="romantic-message fade-in">
 <p style="text-align: left;">My Dearest Wifey,</p>
 <p style="text-align: left;">From the very first moment I saw you, I knew my life had changed forever. Every day with you has been a gift, a beautiful journey filled with laughter, love, and countless little moments that I treasure more than words can express.</p>
 <p style="text-align: left;">You are the light in my darkest days, the warmth in my heart, and the smile that makes everything worthwhile. Your presence makes ordinary moments extraordinary, and your love has made me a better, happier person.</p>
@@ -271,14 +257,14 @@ You are my sunshine, my love, my everything. Happy Birthday, My Dearest Wifey ðŸ
     </div>
 </div>
 
+
         <img src="img/Balloon-Border.png" width="100%" class="balloon-border">
     </div>
 
     <!-- Fullscreen modal for images and videos -->
     <div class="media-modal" id="mediaModal">
-        <span class="close-modal" onclick="closeModal()">&times;</span>
-        <img id="modalImg" style="display:none;">
-        <video id="modalVideo" controls playsinline style="display:none;"></video>
+        <img id="modalImg">
+        <video id="modalVideo" controls playsinline></video>
     </div>
 
     <!-- Scripts -->
@@ -294,7 +280,7 @@ You are my sunshine, my love, my everything. Happy Birthday, My Dearest Wifey ðŸ
             document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Interactive background music and stop previous video
+        // Interactive background music
         const bgMusic = document.getElementById("bg-music");
         let playingVideo = null;
 
@@ -318,33 +304,7 @@ You are my sunshine, my love, my everything. Happy Birthday, My Dearest Wifey ðŸ
                     bgMusic.play();
                 }
             });
-
-            // Open video in fullscreen modal on click
-            video.addEventListener('click', () => {
-                document.getElementById('modalVideo').src = video.querySelector('source').src;
-                document.getElementById('modalVideo').style.display = "block";
-                document.getElementById('modalImg').style.display = "none";
-                document.getElementById('mediaModal').style.display = "flex";
-                document.getElementById('modalVideo').play();
-            });
         });
-
-        // Open image in fullscreen modal
-        document.querySelectorAll('.gallery img').forEach(img => {
-            img.addEventListener('click', () => {
-                document.getElementById('modalImg').src = img.src;
-                document.getElementById('modalImg').style.display = "block";
-                document.getElementById('modalVideo').style.display = "none";
-                document.getElementById('mediaModal').style.display = "flex";
-            });
-        });
-
-        function closeModal() {
-            document.getElementById('mediaModal').style.display = "none";
-            const modalVideo = document.getElementById('modalVideo');
-            modalVideo.pause();
-            modalVideo.src = "";
-        }
 
         // Show top nav after clicking Start
         const startBtn = document.getElementById("play");
@@ -354,6 +314,39 @@ You are my sunshine, my love, my everything. Happy Birthday, My Dearest Wifey ðŸ
             topNav.classList.add("show"); // fade in nav
             startBtn.style.display = "none"; // hide start button
             bgMusic.play();
+        });
+
+        // Fullscreen modal logic
+        const mediaModal = document.getElementById('mediaModal');
+        const modalImg = document.getElementById('modalImg');
+        const modalVideo = document.getElementById('modalVideo');
+
+        // Open image
+        document.querySelectorAll('.gallery img').forEach(img => {
+            img.addEventListener('click', () => {
+                modalImg.src = img.src;
+                modalImg.style.display = "block";
+                modalVideo.style.display = "none";
+                mediaModal.style.display = "flex";
+            });
+        });
+
+        // Open video
+        document.querySelectorAll('video').forEach(video => {
+            video.addEventListener('click', () => {
+                modalVideo.src = video.querySelector('source').src;
+                modalVideo.style.display = "block";
+                modalImg.style.display = "none";
+                mediaModal.style.display = "flex";
+                modalVideo.play();
+            });
+        });
+
+        // Close modal when clicking anywhere
+        mediaModal.addEventListener('click', () => {
+            mediaModal.style.display = "none";
+            modalVideo.pause();
+            modalVideo.src = "";
         });
     </script>
 </body>
