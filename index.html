@@ -7,6 +7,37 @@
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
+        /* Top Navigation Buttons */
+        .top-nav {
+            position: fixed;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10000;
+            display: none; /* initially hidden */
+            gap: 10px;
+            opacity: 0;
+            transition: opacity 1s ease;
+        }
+        .top-nav.show {
+            display: flex;
+            opacity: 1;
+        }
+        .top-nav button {
+            padding: 10px 20px;
+            border-radius: 25px;
+            border: none;
+            background: #ff3366;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.3s, background 0.3s;
+        }
+        .top-nav button:hover {
+            transform: scale(1.1);
+            background: #ff6699;
+        }
+
         /* Gallery images */
         .gallery img {
             width: 100%;
@@ -121,10 +152,18 @@
 </head>
 
 <body>
+    <!-- Top Navigation -->
+    <div class="top-nav">
+        <button onclick="scrollToSection('hbdSection')">Home</button>
+        <button onclick="scrollToSection('photoSection')">Photos</button>
+        <button onclick="scrollToSection('videoSection')">Videos</button>
+        <button onclick="scrollToSection('romanticMessage')">Love Letter</button>
+    </div>
+
     <div class="container">
         <div class="row">
-            <div class="loader">
-                <button id="play">Start</button>
+            <div class="loader text-center mt-5">
+                <button id="play" class="btn btn-lg btn-danger">Start</button>
             </div>
         </div>
     </div>
@@ -138,7 +177,8 @@
     <canvas id="confetti"></canvas>
 
     <div class="main">
-        <div class="container pt-5">
+        <!-- Home/HBD Section -->
+        <div id="hbdSection" class="container pt-5">
             <div class="row">
                 <div class="col-12 col-xl-6 mx-auto">
                     <img src="img/banner.png" alt="" class="fade-in">
@@ -165,9 +205,9 @@
             </div>
         </div>
 
-        <!-- 📸 Photo Gallery -->
-        <div class="container pt-5">
-            <h3 class="text-center fade-in">Memories with Wifey 💕</h3>
+        <!-- Photo Section -->
+        <div id="photoSection" class="container pt-5">
+            <h3 class="text-center fade-in">💕 Gallery of My Love 💕</h3>
             <div class="row gallery">
                 <!-- 10 Photos -->
                 <div class="col-6 col-md-4 mb-3 fade-in sparkle"><img src="img/photo1.jpg"></div>
@@ -183,9 +223,9 @@
             </div>
         </div>
 
-        <!-- 🎥 Videos Directly -->
-        <div class="container pt-5">
-            <h3 class="text-center fade-in">Special Moments 🎥</h3>
+        <!-- Video Section -->
+        <div id="videoSection" class="container pt-5">
+            <h3 class="text-center fade-in">🎥 Glimpse of My Happiness 🎥</h3>
             <div class="row">
                 <div class="col-12 col-md-6 fade-in">
                     <video controls playsinline>
@@ -214,10 +254,22 @@
             </div>
         </div>
 
-        <!-- Romantic Message -->
-        <div class="romantic-message fade-in">
-            “You are my sunshine, my love, my everything. Happy Birthday, my dearest Wifey 💖”
-        </div>
+        <!-- Romantic Message Section -->
+        <div id="romanticMessage" class="container pt-5">
+    <h3 class="text-center fade-in">💖 My Heart 💖</h3>
+    <div class="romantic-message fade-in">
+<p style="text-align: left;">My Dearest Wifey,</p>
+<p style="text-align: left;">From the very first moment I saw you, I knew my life had changed forever. Every day with you has been a gift, a beautiful journey filled with laughter, love, and countless little moments that I treasure more than words can express.</p>
+<p style="text-align: left;">You are the light in my darkest days, the warmth in my heart, and the smile that makes everything worthwhile. Your presence makes ordinary moments extraordinary, and your love has made me a better, happier person.</p>
+<p style="text-align: left;">On your birthday, I want to remind you of how deeply I love you, how endlessly I admire you, and how grateful I am for every second we share. You are my partner, my confidant, my best friend, and the love of my life.</p>
+<p style="text-align: left;">May this year bring you as much joy as you bring me every single day. I promise to hold your hand through every high and low, to celebrate your victories, and to comfort you in your struggles. You are my everything, and I will love you forever and always.</p>
+<p style="text-align: left;">Happy Birthday, my love.</p>
+<p style="text-align: left;">Forever Yours,</p>
+<p style="text-align: left;">Hasir</p>
+
+You are my sunshine, my love, my everything. Happy Birthday, My Dearest Wifey 💖”
+    </div>
+</div>
 
         <img src="img/Balloon-Border.png" width="100%" class="balloon-border">
     </div>
@@ -237,61 +289,10 @@
     <script src="js/script.js"></script>
 
     <script>
-        // Confetti effect
-        const confettiCanvas = document.getElementById('confetti');
-        const ctx = confettiCanvas.getContext('2d');
-        confettiCanvas.width = window.innerWidth;
-        confettiCanvas.height = window.innerHeight;
-        const confettis = [];
-        for(let i=0;i<150;i++){
-            confettis.push({
-                x: Math.random()*confettiCanvas.width,
-                y: Math.random()*confettiCanvas.height,
-                r: Math.random()*6+4,
-                d: Math.random()*150+50,
-                color: `hsl(${Math.random()*360},70%,60%)`,
-                tilt: Math.random()*10-10
-            });
+        // Smooth scroll to section
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
         }
-        function drawConfetti(){
-            ctx.clearRect(0,0,confettiCanvas.width, confettiCanvas.height);
-            confettis.forEach((c)=>{
-                ctx.beginPath();
-                ctx.lineWidth = c.r/2;
-                ctx.strokeStyle = c.color;
-                ctx.moveTo(c.x+c.tilt, c.y);
-                ctx.lineTo(c.x+c.tilt, c.y+c.r);
-                ctx.stroke();
-                c.y += 2;
-                if(c.y > confettiCanvas.height) c.y = -10;
-            });
-            requestAnimationFrame(drawConfetti);
-        }
-        drawConfetti();
-
-        // Balloons
-        const balloonsContainer = document.createElement('div');
-        balloonsContainer.id = "balloons";
-        document.body.appendChild(balloonsContainer);
-        const colors = ["#ff4d6d","#ff99cc","#ffccff","#66ccff","#ffcc66"];
-        for(let i=0;i<15;i++){
-            const balloon = document.createElement("div");
-            balloon.classList.add("balloon");
-            balloon.style.backgroundColor = colors[Math.floor(Math.random()*colors.length)];
-            balloon.style.left = Math.random()*90+"%";
-            balloon.style.animationDuration = (6+Math.random()*6)+"s";
-            balloonsContainer.appendChild(balloon);
-        }
-
-        // Fade-in for images and videos
-        document.querySelectorAll('img, video').forEach(el => {
-            el.classList.add('fade-in');
-        });
-
-        // Sparkle effect for cake and photos
-        document.querySelectorAll('.cake img, .gallery img').forEach(el => {
-            el.classList.add('sparkle');
-        });
 
         // Interactive background music and stop previous video
         const bgMusic = document.getElementById("bg-music");
@@ -317,38 +318,43 @@
                     bgMusic.play();
                 }
             });
-        });
 
-        // Fullscreen modal for image/video
-        const mediaModal = document.getElementById('mediaModal');
-        const modalImg = document.getElementById('modalImg');
-        const modalVideo = document.getElementById('modalVideo');
-
-        document.querySelectorAll('.gallery img').forEach(img => {
-            img.addEventListener('click', () => {
-                modalImg.src = img.src;
-                modalImg.style.display = "block";
-                modalVideo.style.display = "none";
-                mediaModal.style.display = "flex";
+            // Open video in fullscreen modal on click
+            video.addEventListener('click', () => {
+                document.getElementById('modalVideo').src = video.querySelector('source').src;
+                document.getElementById('modalVideo').style.display = "block";
+                document.getElementById('modalImg').style.display = "none";
+                document.getElementById('mediaModal').style.display = "flex";
+                document.getElementById('modalVideo').play();
             });
         });
 
-        document.querySelectorAll('video').forEach(video => {
-            video.addEventListener('click', () => {
-                modalVideo.src = video.querySelector('source').src;
-                modalVideo.style.display = "block";
-                modalImg.style.display = "none";
-                mediaModal.style.display = "flex";
-                modalVideo.play();
+        // Open image in fullscreen modal
+        document.querySelectorAll('.gallery img').forEach(img => {
+            img.addEventListener('click', () => {
+                document.getElementById('modalImg').src = img.src;
+                document.getElementById('modalImg').style.display = "block";
+                document.getElementById('modalVideo').style.display = "none";
+                document.getElementById('mediaModal').style.display = "flex";
             });
         });
 
         function closeModal() {
-            mediaModal.style.display = "none";
+            document.getElementById('mediaModal').style.display = "none";
+            const modalVideo = document.getElementById('modalVideo');
             modalVideo.pause();
             modalVideo.src = "";
         }
+
+        // Show top nav after clicking Start
+        const startBtn = document.getElementById("play");
+        const topNav = document.querySelector(".top-nav");
+
+        startBtn.addEventListener("click", () => {
+            topNav.classList.add("show"); // fade in nav
+            startBtn.style.display = "none"; // hide start button
+            bgMusic.play();
+        });
     </script>
 </body>
 </html>
-
